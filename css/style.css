@@ -148,9 +148,6 @@ body {
   z-index: -1;
   transition: all 0.4s;
 }
-.btn-white::after {
-  background-color: #fff;
-}
 .btn:hover::after {
   transform: scaleX(1.4) scaleY(1.6);
   opacity: 0;
@@ -160,6 +157,17 @@ body {
   animation-duration: 1s;
   animation-delay: 0.75s;
   animation-fill-mode: backwards;
+}
+.btn--green {
+  background-color: #28b485;
+  color: white;
+}
+.btn--white {
+  background-color: #fff;
+  color: #777;
+}
+.btn--white::after {
+  background-color: #fff;
 }
 
 .section-about {
@@ -220,6 +228,9 @@ body {
 }
 .row .col-1-of-2 {
   width: calc((100% - 6rem) / 2);
+}
+.row .col-1-of-3 {
+  width: calc((100% - 2 * 6rem) / 3);
 }
 .row .col-1-of-4 {
   width: calc((100% - 3 * 6rem) / 4);
@@ -322,4 +333,162 @@ body {
 }
 .section-features > * {
   transform: skewY(7deg);
+}
+
+.section-tours {
+  background-color: #f7f7f7;
+  padding: 25rem 0 50rem 0;
+  margin-top: -10rem;
+}
+
+.card {
+  perspective: 1500rem;
+  position: relative;
+  height: 50rem;
+  -moz-perspective: 1500rem;
+}
+.card__side {
+  overflow: hidden;
+  height: 50rem;
+  transition: all 0.8s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backface-visibility: hidden;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+}
+.card__side--front {
+  background-color: #fff;
+}
+.card__side--back {
+  transform: rotateY(180deg);
+}
+.card__side--back-1 {
+  background-image: linear-gradient(to right bottom, #ffbb00, #ff7830);
+}
+.card__side--back-2 {
+  background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
+}
+.card__side--back-3 {
+  background-image: linear-gradient(to right bottom, #2998ff, #5643fa);
+}
+.card:hover .card__side--front {
+  transform: rotateY(-180deg);
+}
+.card:hover .card__side--back {
+  transform: rotateY(0deg);
+}
+.card__picture {
+  height: 23rem;
+  background-blend-mode: screen;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+.card__picture img {
+  height: 23rem;
+  width: 34rem;
+}
+.card__picture--1 {
+  background: linear-gradient(to right bottom, #ffbb00, #ff7830), url(./img/favicon.png);
+}
+.card__picture--2 {
+  background-image: linear-gradient(to right bottom, #7ed56f, #28b485), url(./img/favicon.png);
+}
+.card__picture--3 {
+  background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url(./img/favicon.png);
+}
+.card__heading {
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  position: absolute;
+  top: 12rem;
+  right: 2rem;
+  text-align: right;
+  width: 75%;
+}
+.card__heading-span {
+  padding: 1rem 1.5rem;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.card__heading-span--1 {
+  background-image: linear-gradient(to right bottom, rgba(255, 187, 0, 0.85), rgba(255, 120, 48, 0.85));
+}
+.card__heading-span--2 {
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.85), rgba(40, 180, 133, 0.85));
+}
+.card__heading-span--3 {
+  background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85));
+}
+.card__details {
+  padding: 3rem;
+}
+.card__details ul {
+  list-style: none;
+  width: 80%;
+  margin: 0 auto;
+}
+.card__details ul li {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+.card__details ul li:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+
+.section-stories {
+  padding: 15rem 0;
+  background-color: #eee;
+}
+
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  font-size: 1.6rem;
+  transform: skewX(-12deg);
+}
+.story > * {
+  transform: skewX(12deg);
+}
+.story__shape {
+  width: 15rem;
+  height: 15rem;
+  float: left;
+  shape-outside: circle(50% at 50% 50%);
+  -webkit-shape-outside: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
+  transform: translateX(-3rem) skewX(12deg);
+}
+.story__img {
+  height: 100%;
+}
+.story__text {
+  transform: skewX(12deg);
+}
+
+.card__cta {
+  text-align: center;
+}
+.card__price-box {
+  padding: 3rem;
+}
+.card__price-only {
+  padding-top: 5rem;
+  color: #fff;
+  font-size: 2rem;
+}
+.card__price-value {
+  padding-bottom: 3rem;
+  color: #fff;
+  font-size: 3.5rem;
 }/*# sourceMappingURL=style.css.map */
