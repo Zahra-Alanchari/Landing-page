@@ -27,6 +27,28 @@ $defualt-font-size: 1.6rem;
     display: table;
   }
 }
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab {
+    @media (max-width: 56.25em) {
+      @content;
+    }
+  }
+  @if $breakpoint == land {
+    @media (max-width: 75em) {
+      @content;
+    }
+  }
+  @if $breakpoint == bigDesktop {
+    @media (min-width: 112.5em) {
+      @content;
+    }
+  }
+}
 
 @font-face {
   font-family: "linea-basic-10";
@@ -41,6 +63,19 @@ $defualt-font-size: 1.6rem;
 
 html {
   font-size: 62.5%;
+  // @include respond(phone){
+  //   font-size: 30%;
+  // }
+  @include respond(land) {
+    font-size: 56.25%;
+  }
+  @include respond(tab) {
+    font-size: 50%;
+  }
+
+  @include respond(bigDesktop) {
+    font-size: 75%;
+  }
 }
 
 * {
@@ -56,6 +91,9 @@ body {
   color: $color-gray-dark;
   padding: 3rem;
   box-sizing: border-box;
+  @include respond(tab) {
+    padding: 0rem;
+  }
 }
 .header {
   height: 95vh;
@@ -65,6 +103,9 @@ body {
   background-position: top;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   position: relative;
+  @include respond(phone) {
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
 
   .logo-box {
     position: absolute;
@@ -96,6 +137,10 @@ body {
     letter-spacing: 31px;
     animation-name: moveInLeft;
     animation-duration: 1s;
+    @include respond(phone) {
+      letter-spacing: 1rem;
+      font-family: 5rem;
+    }
   }
   &-sub {
     display: block;
@@ -104,6 +149,10 @@ body {
     letter-spacing: 1.74rem;
     animation-name: moveInRight;
     animation-duration: 1s;
+    @include respond(phone) {
+      letter-spacing: 0.5rem;
+      font-family: 5rem;
+    }
   }
 }
 
@@ -167,7 +216,8 @@ body {
     transform: translateY(-3px);
     box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
   }
-  &:active, &:focus{
+  &:active,
+  &:focus {
     transform: translateY(-1px);
     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
   }
@@ -221,6 +271,9 @@ body {
   background-color: $color-grey-light-1;
   padding: 25rem 0;
   margin-top: -20vh;
+  @include respond(tab) {
+    padding: 25rem 0;
+  }
 }
 .heading-secondary {
   font-size: 3.5rem;
@@ -236,6 +289,12 @@ body {
   color: transparent;
   transition: all 0.2s;
   letter-spacing: 0.2rem;
+  @include respond(tab) {
+    font-size: 3rem;
+  }
+  @include respond(phone) {
+    font-size: 2.5rem;
+  }
 
   &:hover {
     transform: skewY(2deg) skewX(15deg) scale(1.1);
@@ -246,10 +305,16 @@ body {
   text-align: center !important;
 }
 .u-margin-bottom-big {
-  margin-bottom: 8rem;
+  margin-bottom: 8rem !important;
+  @include respond(tab) {
+    margin-bottom: 5rem;
+  }
 }
 .u-margin-bottom-medium {
   margin-bottom: 4rem;
+  @include respond(tab) {
+    margin-bottom: 3rem !important;
+  }
 }
 .u-margin-bottom-small {
   margin-bottom: 1.5rem;
@@ -259,6 +324,13 @@ body {
   margin: 0 auto;
   &:not(:last-child) {
     margin-bottom: $gutter-vertical;
+    @include respond(tab) {
+      max-width: 50rem;
+    }
+  }
+  @include respond(tab) {
+    width: 100% !important;
+    padding: 0 3rem;
   }
   @include clearfix;
 
@@ -266,6 +338,13 @@ body {
     float: left;
     &:not(:last-child) {
       margin-right: $gutter-horizontal;
+      @include respond(tab) {
+        margin-right: 0;
+        margin-bottom: 6rem;
+      }
+    }
+    @include respond(tab) {
+      width: 100% !important;
     }
   }
   .col-1-of-2 {
@@ -315,6 +394,9 @@ body {
 
 .composition {
   position: relative;
+  @include respond(tab) {
+    padding: 1rem;
+  }
   &__photo {
     width: 55%;
     box-shadow: 0 1.5rem 4rem rgba($color: $color-black, $alpha: 0.4);
@@ -323,18 +405,39 @@ body {
     z-index: 10;
     transition: all 0.2s;
     outline-offset: 2rem;
+    @include respond(tab) {
+      float: left;
+      position: relative;
+      width: 33.33%;
+
+      box-shadow: 0 1.5rem 3rem rgba($color: $color-black, $alpha: 0.2);
+    }
 
     &--p1 {
       left: 0;
       top: -2rem;
+      @include respond(tab) {
+        top: 0;
+        transform: scale(1.3);
+      }
     }
     &--p2 {
       right: 0;
       top: 2rem;
+      @include respond(tab) {
+        top: -1rem;
+        transform: scale(1.3);
+        z-index: 100;
+      }
     }
     &--p3 {
       left: 20%;
       top: 10rem;
+      @include respond(tab) {
+        top: 1rem;
+        left: 0;
+        transform: scale(1.1);
+      }
     }
 
     &:hover {
@@ -357,7 +460,13 @@ body {
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba($color-black, $alpha: 0.15);
   transition: transform 0.3s;
+  @include respond(tab) {
+    padding: 2rem;
+    width: 33%;
+    margin: 0 auto;
+  }
   // transform: skewY(7deg);
+
   &:hover {
     transform: translateY(-1.5rem) scale(1.03);
   }
@@ -372,6 +481,9 @@ body {
     );
     -webkit-background-clip: text;
     color: transparent;
+    @include respond(tab) {
+      margin-bottom: 0;
+    }
   }
 }
 .section-features {
@@ -388,12 +500,18 @@ body {
   & > * {
     transform: skewY(7deg);
   }
+  @include respond(tab) {
+    padding: 10rem 0;
+  }
 }
 
 .section-tours {
   background-color: $color-grey-light-1;
-  padding: 25rem 0 25rem 0;
+  padding: 25rem 0 15rem 0;
   margin-top: -10rem;
+  @include respond(tab) {
+    padding: 20rem 0 10rem 0;
+  }
 }
 .card {
   perspective: 1500rem;
@@ -402,7 +520,6 @@ body {
   -moz-perspective: 1500rem;
 
   &__side {
-    // background-color: orange;
     overflow: hidden;
     height: 50rem;
     transition: all 0.8s ease;
@@ -418,7 +535,6 @@ body {
       background-color: $color-white;
     }
     &--back {
-      // background-color: colo;
       transform: rotateY(180deg);
       &-1 {
         background-image: linear-gradient(
@@ -450,7 +566,6 @@ body {
     transform: rotateY(0deg);
   }
   &__picture {
-    // background-size: cover;
     height: 23rem;
     background-blend-mode: screen;
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
@@ -538,11 +653,81 @@ body {
       }
     }
   }
+  &__cta {
+    text-align: center;
+  }
+  &__price {
+    &-box {
+      padding: 3rem;
+    }
+    &-only {
+      padding-top: 5rem;
+      color: $color-white;
+      font-size: 1.4rem;
+    }
+    &-value {
+      padding-bottom: 3rem;
+      color: $color-white;
+      font-size: 6rem;
+      font-weight: 100;
+    }
+  }
+  @include respond(tab) {
+    height: auto;
+    border-radius: 3px;
+    background-color: $color-white ;
+    box-shadow:0 1.5rem 4rem rgba($color: $color-black, $alpha: .15);
+
+    &__side {
+      height: auto;
+      position: relative;
+      border-radius: 3px;
+      box-shadow: none;
+
+
+      &--back {
+        transform: rotateY(0deg);
+        clip-path: polygon(0 15%, 100% 0, 100% 100%,0 100%);
+      }
+    }
+    &:hover &__side--front {
+      transform: rotateY(0deg);
+    }
+    &__details{
+      padding:1rem 3rem ;
+    }
+   
+    &__cta {
+      text-align: center;
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding:7rem 4rem 4rem 4rem;
+      
+    }
+    &__price {
+      &-only {
+        padding-top: 0rem;
+        color: $color-white;
+        font-size: 1.4rem;
+      }
+      &-value {
+        padding-bottom: 1rem;
+        color: $color-white;
+        font-size: 4rem;
+        margin: -12px;
+      }
+    }
+  }
 }
 
 .section-stories {
   padding: 15rem 0;
   position: relative;
+  @include respond(tab) {
+    padding: 10rem 0;
+  }
 }
 .story {
   width: 75%;
@@ -557,6 +742,14 @@ body {
   & > * {
     transform: skewX(12deg);
   }
+  @include respond(tab){
+    width: 100%;
+    padding: 4rem;
+  padding-left: 7rem;
+  }
+  @include respond(phone){
+    transform: skewX(0deg);
+  }
 
   &__shape {
     width: 15rem;
@@ -568,6 +761,9 @@ body {
     -webkit-clip-path: circle(50% at 50% 50%);
     transform: translateX(-3rem) skewX(12deg);
     position: relative;
+    @include respond(phone){
+      transform: translateX(-3rem) skewX(0deg);
+    }
   }
   &__img {
     height: 100%;
@@ -577,6 +773,9 @@ body {
   }
   &__text {
     transform: skewX(12deg);
+    @include respond(phone){
+      transform: skewX(0deg);
+    }
   }
   &__caption {
     position: absolute;
@@ -599,27 +798,6 @@ body {
     transform: translateX(-4rem) scale(1);
     backface-visibility: hidden;
     filter: blur(3px);
-  }
-}
-
-.card {
-  &__cta {
-    text-align: center;
-  }
-  &__price {
-    &-box {
-      padding: 3rem;
-    }
-    &-only {
-      padding-top: 5rem;
-      color: $color-white;
-      font-size: 2rem;
-    }
-    &-value {
-      padding-bottom: 3rem;
-      color: $color-white;
-      font-size: 3.5rem;
-    }
   }
 }
 
@@ -646,6 +824,9 @@ body {
     $color-primary-light,
     $color-primary-dark
   );
+  @include respond(tab) {
+    padding: 10rem 0;
+  }
 }
 .book {
   background-image: linear-gradient(
@@ -659,10 +840,34 @@ body {
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba($color: $color-black, $alpha: 0.2);
 
-  height: 55rem;
+  @include respond(land){
+    background-image: linear-gradient(
+      105deg,
+      rgba($color-white, 0.9) 0%,
+      rgba($color-white, 0.9) 65%,
+      transparent 65%
+    ),
+    url(../img/nat-10.jpg);
+    background-size: cover;
+
+  }
+  @include respond(tab){
+    background-image: linear-gradient(
+      to right,
+      rgba($color-white, 0.9) 0%,
+      rgba($color-white, 0.9) 100%,
+    ),
+    url(../img/nat-10.jpg);
+  }
   &__form {
     width: 50%;
     padding: 6rem;
+    @include respond(land){
+      width: 65%;
+    }
+    @include respond(tab){
+      width: 100%;
+    }
   }
 }
 
@@ -682,6 +887,9 @@ body {
     width: 90%;
     display: block;
     transition: all 0.3s;
+    @include respond(tab){
+      width: 100%;
+    }
 
     &::-webkit-input-placeholder {
       color: $color-gray-dark-2;
@@ -708,9 +916,6 @@ body {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4rem);
-    // &:active{
-    //   opacity: 1;
-    // }
   }
   &__radio-input {
     display: none;
@@ -718,6 +923,10 @@ body {
   &__radio-group {
     width: 49%;
     display: inline-block;
+    @include respond(tab){
+      width: 100%;
+      margin-bottom: 2rem;
+    }
   }
   &__radio-label {
     font-size: $defualt-font-size;
@@ -754,55 +963,70 @@ body {
   }
 }
 
-.footer{
+.footer {
   background-color: $color-gray-dark;
   padding: 10rem 0;
   font-size: 1.4rem;
   color: $color-grey-light-2;
-  &__logo-box{
+  @include respond(tab) {
+    padding: 8rem 0;
+  }
+  &__logo-box {
     text-align: center;
     margin-bottom: 8rem;
+    @include respond(tab) {
+      margin-bottom: 6rem;
+    }
   }
-  &__logo{ 
+  &__logo {
     width: 15rem;
     height: auto;
   }
-  &__navigation{
+  &__navigation {
     border-top: 1px solid $color-grey-light-1;
     padding-top: 2rem;
     display: inline-block;
     margin-top: 1.4rem;
+    @include respond(tab) {
+      width: 100%;
+      text-align: center;
+    }
   }
-  &__list{
+  &__list {
     list-style: none;
   }
-  &__item{
+  &__item {
     display: inline-block;
-    &:not(:last-child){
+    &:not(:last-child) {
       margin-right: 1.5rem;
     }
   }
-  &__link{
-    &:link, &:visited{
+  &__link {
+    &:link,
+    &:visited {
       color: $color-grey-light-2;
       background-color: $color-gray-dark;
       text-decoration: none;
       text-transform: uppercase;
       display: inline-block;
-      transition: all .2s;
+      transition: all 0.2s;
     }
-    &:hover, &:active{
+    &:hover,
+    &:active {
       color: $color-primary;
-      box-shadow: 0 1rem 2rem rgba($color: $color-black, $alpha: .4);
+      box-shadow: 0 1rem 2rem rgba($color: $color-black, $alpha: 0.4);
       transform: rotate(5deg) scale(1.3);
     }
   }
 
-  &__copyright{
+  &__copyright {
     border-top: 1px solid $color-grey-light-1;
     padding-top: 2rem;
     width: 80%;
     float: right;
-    // color: $color-grey-light-2;
+    @include respond(tab) {
+      width: 100%;
+      float: none;
+    }
   }
 }
