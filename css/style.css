@@ -26,7 +26,7 @@ body {
 
 .header {
   height: 95vh;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8156862745), rgba(40, 180, 133, 0.7254901961)), url(./img/hero.jpg);
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8156862745), rgba(40, 180, 133, 0.7254901961)), url(../img/hero.jpg);
   background-size: cover;
   background-position: top;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
@@ -326,7 +326,7 @@ body {
 
 .section-features {
   padding: 20rem 0;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(119, 119, 119, 0.8)), url(./img/nat-4.jpg);
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(119, 119, 119, 0.8)), url(../img/nat-4.jpg);
   background-size: cover;
   transform: skewY(-7deg);
   margin-top: -10rem;
@@ -386,18 +386,17 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 }
-.card__picture img {
-  height: 23rem;
-  width: 34rem;
-}
 .card__picture--1 {
-  background: linear-gradient(to right bottom, #ffbb00, #ff7830), url(./img/favicon.png);
+  background: linear-gradient(to right bottom, #ffbb00, #ff7830), url(../img/nat-5.jpg);
+  background-size: cover;
 }
 .card__picture--2 {
-  background-image: linear-gradient(to right bottom, #7ed56f, #28b485), url(./img/favicon.png);
+  background-image: linear-gradient(to right bottom, #7ed56f, #28b485), url(../img/nat-6.jpg);
+  background-size: cover;
 }
 .card__picture--3 {
-  background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url(./img/favicon.png);
+  background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url(../img/nat-4.jpg);
+  background-size: cover;
 }
 .card__heading {
   font-size: 2.5rem;
@@ -533,4 +532,15 @@ body {
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+.section-book {
+  padding: 15rem 0;
+  background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
+}
+
+.book {
+  background-image: url(../img/nat-10.jpg);
+  background-size: 100%;
+  height: 50rem;
 }/*# sourceMappingURL=style.css.map */
